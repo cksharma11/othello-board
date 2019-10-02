@@ -49,6 +49,25 @@ const upCheck = (coins, position, activeColor) => {
   return shouldReplace ? coinsToReplace : [];
 }
 
+const downCheck = (coins, position, activeColor) => {
+  let diff = 8 - Math.round(position / 8) - 1;
+  if (diff === 0) return [];
+
+  const coinsToReplace = [];
+  let shouldReplace = false;
+  for (let i = position + 8; i <= position + ((diff) * 8); i += 8) {
+    if (coins[i].isPlaced && coins[i].color !== activeColor) {
+      coinsToReplace.push(i);
+    }
+    if (coins[i].color === activeColor) {
+      shouldReplace = true;
+      break;
+    }
+  }
+  return shouldReplace ? coinsToReplace : [];
+}
+
+
 const leftDiagonalUpCheck = (coins, position, activeColor) => {
   let diff = Math.round(position / 8) - 1;
   if (diff === 0) return [];
@@ -76,24 +95,6 @@ const rightDiagonalUpCheck = (coins, position, activeColor) => {
   let shouldReplace = false;
   for (let i = position - 7; diff > 0; i -= 7) {
     diff = diff -1;
-    if (coins[i].isPlaced && coins[i].color !== activeColor) {
-      coinsToReplace.push(i);
-    }
-    if (coins[i].color === activeColor) {
-      shouldReplace = true;
-      break;
-    }
-  }
-  return shouldReplace ? coinsToReplace : [];
-}
-
-const downCheck = (coins, position, activeColor) => {
-  let diff = 8 - Math.round(position / 8) - 1;
-  if (diff === 0) return [];
-
-  const coinsToReplace = [];
-  let shouldReplace = false;
-  for (let i = position + 8; i <= position + ((diff) * 8); i += 8) {
     if (coins[i].isPlaced && coins[i].color !== activeColor) {
       coinsToReplace.push(i);
     }

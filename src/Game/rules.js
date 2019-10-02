@@ -19,7 +19,7 @@ const leftCheck = (coins, position, activeColor) => {
   diff = diff === 0 ? 8 : diff;
   const coinsToReplace = [];
   let shouldReplace = false;
-  for (let i = position - 1; i > position - diff -1; i--) {
+  for (let i = position - 1; i > position - diff - 1 && i > 0; i--) {
     if (coins[i].isPlaced && coins[i].color !== activeColor) {
       coinsToReplace.push(i);
     }

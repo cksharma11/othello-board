@@ -1,4 +1,4 @@
-const rightCheck = (coins, position, activeColor) => {
+const rightSideCoinsValidation = (coins, position, activeColor) => {
   const diff = Math.ceil(position / 8) * 8 - position;
   const coinsToReplace = [];
   let shouldReplace = false;
@@ -14,7 +14,7 @@ const rightCheck = (coins, position, activeColor) => {
   return shouldReplace ? coinsToReplace : [];
 }
 
-const leftCheck = (coins, position, activeColor) => {
+const leftSideCoinsValidation = (coins, position, activeColor) => {
   let diff = position - Math.floor(position / 8) * 8;
   diff = diff === 0 ? 8 : diff;
   const coinsToReplace = [];
@@ -31,7 +31,7 @@ const leftCheck = (coins, position, activeColor) => {
   return shouldReplace ? coinsToReplace : [];
 }
 
-const upCheck = (coins, position, activeColor) => {
+const upsideCoinsValidation = (coins, position, activeColor) => {
   let diff = Math.round(position / 8) - 1;
   if (diff === 0) return [];
 
@@ -49,7 +49,7 @@ const upCheck = (coins, position, activeColor) => {
   return shouldReplace ? coinsToReplace : [];
 }
 
-const downCheck = (coins, position, activeColor) => {
+const downsideCoinsValidation = (coins, position, activeColor) => {
   let diff = 8 - Math.round(position / 8) - 1;
   if (diff === 0) return [];
 
@@ -68,7 +68,7 @@ const downCheck = (coins, position, activeColor) => {
 }
 
 
-const leftDiagonalUpCheck = (coins, position, activeColor) => {
+const leftUpCrossCoinsValidation = (coins, position, activeColor) => {
   let diff = Math.round(position / 8) - 1;
   if (diff === 0) return [];
 
@@ -87,7 +87,7 @@ const leftDiagonalUpCheck = (coins, position, activeColor) => {
   return shouldReplace ? coinsToReplace : [];
 }
 
-const rightDiagonalUpCheck = (coins, position, activeColor) => {
+const rightUpCrossCoinsValidation = (coins, position, activeColor) => {
   let diff = Math.floor(position / 8);
   if (diff === 0) return [];
 
@@ -106,7 +106,7 @@ const rightDiagonalUpCheck = (coins, position, activeColor) => {
   return shouldReplace ? coinsToReplace : [];
 }
 
-const leftDiagonalDownCheck = (coins, position, activeColor) => {
+const leftDownCrossCoinsValidation = (coins, position, activeColor) => {
   let diff = 8 - Math.round(position / 8) - 1;
   if (diff === 0) return [];
 
@@ -127,7 +127,7 @@ const leftDiagonalDownCheck = (coins, position, activeColor) => {
   return shouldReplace ? coinsToReplace : [];
 }
 
-const rightDiagonalDownCheck = (coins, position, activeColor) => {
+const rightDownCrossCoinsValidation = (coins, position, activeColor) => {
   let diff = 8 - Math.round(position / 8);
   if (diff === 0) return [];
 
@@ -146,19 +146,19 @@ const rightDiagonalDownCheck = (coins, position, activeColor) => {
   return shouldReplace ? coinsToReplace : [];
 }
 
-const rules = (coins, currentlyPlacedCoin) => {
+const rulesValidator = (coins, currentlyPlacedCoin) => {
   const activeColor = currentlyPlacedCoin.color;
   const position = currentlyPlacedCoin.position;
 
   const coinsToReplace = [
-    ...rightCheck(coins, position, activeColor),
-    ...leftCheck(coins, position, activeColor),
-    ...upCheck(coins, position, activeColor),
-    ...downCheck(coins, position, activeColor),
-    ...leftDiagonalUpCheck(coins, position, activeColor),
-    ...rightDiagonalUpCheck(coins, position, activeColor),
-    ...leftDiagonalDownCheck(coins, position, activeColor),
-    ...rightDiagonalDownCheck(coins, position, activeColor),
+    ...rightSideCoinsValidation(coins, position, activeColor),
+    ...leftSideCoinsValidation(coins, position, activeColor),
+    ...upsideCoinsValidation(coins, position, activeColor),
+    ...downsideCoinsValidation(coins, position, activeColor),
+    ...leftUpCrossCoinsValidation(coins, position, activeColor),
+    ...rightUpCrossCoinsValidation(coins, position, activeColor),
+    ...leftDownCrossCoinsValidation(coins, position, activeColor),
+    ...rightDownCrossCoinsValidation(coins, position, activeColor),
   ];
 
   const update = { ...coins };
@@ -168,4 +168,4 @@ const rules = (coins, currentlyPlacedCoin) => {
   return update;
 }
 
-export { rules };
+export { rulesValidator };

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Coin from '../Coin/Coin';
-import { rules } from './rules';
+import { rulesValidator } from './rules';
 
 const createBoard = () => {
   const board = {}
@@ -29,7 +29,7 @@ const Game = () => {
     const update = { ...board };
     update[id] = { ...update[id], isPlaced: true, color };
     setBoard(update);
-    rules(update, update[id]);
+    rulesValidator(update, update[id]);
     updateActivePlayer();
   }
 

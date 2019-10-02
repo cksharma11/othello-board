@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import Coin from '../Coin/Coin';
+import { rules } from './rules';
 
 const createBoard = () => {
   const board = {}
   new Array(64).fill(1).forEach((e, i) => {
       board[i + 1] = {
         isPlaced: false,
-        color: null
+        color: null,
+        position: i + 1
       }
   })
   return board;
@@ -24,9 +26,10 @@ const Game = () => {
   }
 
   const placeCoin = (id, color) => {
-    const clone = { ...board };
-    clone[id] = { ...clone[id], isPlaced: true, color };
-    setBoard(clone);
+    const update = { ...board };
+    update[id] = { ...update[id], isPlaced: true, color };
+    setBoard(update);
+    rules(update, update[id]);
     updateActivePlayer();
   }
 

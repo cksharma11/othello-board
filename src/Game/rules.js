@@ -50,12 +50,13 @@ const upCheck = (coins, position, activeColor) => {
 }
 
 const downCheck = (coins, position, activeColor) => {
-  let diff = 8 - Math.round(position / 8);
+  let diff = 8 - Math.round(position / 8) - 1;
   if (diff === 0) return [];
 
   const coinsToReplace = [];
   let shouldReplace = false;
   for (let i = position + 8; i <= position + ((diff) * 8); i += 8) {
+    console.log(coins[i])
     if (coins[i].isPlaced && coins[i].color !== activeColor) {
       coinsToReplace.push(i);
     }
@@ -72,9 +73,9 @@ const rules = (coins, currentlyPlacedCoin) => {
   const position = currentlyPlacedCoin.position;
 
   const coinsToReplace = [
-    ...rightCheck(coins, position, activeColor),
-    ...leftCheck(coins, position, activeColor),
-    ...upCheck(coins, position, activeColor),
+    // ...rightCheck(coins, position, activeColor),
+    // ...leftCheck(coins, position, activeColor),
+    // ...upCheck(coins, position, activeColor),
     ...downCheck(coins, position, activeColor)
   ];
 

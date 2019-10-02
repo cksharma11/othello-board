@@ -168,4 +168,4 @@ const rulesValidator = (coins, currentlyPlacedCoin) => {
   return update;
 }
 
-export { rulesValidator };
+export { rulesValidator, rightSideCoinsValidation, leftSideCoinsValidation };

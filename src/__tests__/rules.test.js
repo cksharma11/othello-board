@@ -1,4 +1,8 @@
-import { rightSideCoinsValidation, leftSideCoinsValidation } from "../Game/rules";
+import {
+  rightSideCoinsValidation,
+  leftSideCoinsValidation,
+  upsideCoinsValidation
+} from "../Game/rules";
 
 const coins = {
   1: { isPlaced: false, color: null },
@@ -183,5 +187,65 @@ describe('leftSideCoinsValidation', () => {
 
     const actual = leftSideCoinsValidation(data, 5, 'black');
     expect(actual).toEqual([4]);
+  })
+})
+
+describe('upsideCoinsValidation', () => {
+  it('should right top coins', () => {
+    const data = { ...coins };
+
+    data[1].isPlaced = true;
+    data[1].color = 'white';
+
+    data[17].isPlaced = true;
+    data[17].color = 'black';
+
+    data[9].isPlaced = true;
+    data[9].color = 'black';
+
+    const actual = upsideCoinsValidation(data, 25, 'white');
+    expect(actual).toEqual([17, 9]);
+  })
+
+  it('should handle middle up coins', () => {
+    const data = { ...coins };
+
+    data[19].isPlaced = true;
+    data[19].color = 'white';
+    data[27].isPlaced = true;
+    data[27].color = 'black';
+
+    data[35].isPlaced = true;
+    data[35].color = 'black';
+
+    const actual = upsideCoinsValidation(data, 43, 'white');
+    expect(actual).toEqual([35, 27]);
+  })
+
+  it('should handle right top coins', () => {
+    const data = { ...coins };
+
+    data[56].isPlaced = true;
+    data[56].color = 'black';
+    data[48].isPlaced = true;
+    data[48].color = 'black';
+
+    data[40].isPlaced = true;
+    data[40].color = 'white';
+
+    const actual = upsideCoinsValidation(data, 64, 'white');
+    expect(actual).toEqual([56, 48]);
+  })
+
+  it('should handle right bottom', () => {
+    const data = { ...coins };
+
+    data[8].isPlaced = true;
+    data[8].color = 'white';
+    data[16].isPlaced = true;
+    data[16].color = 'black';
+
+    const actual = upsideCoinsValidation(data, 32, 'white');
+    expect(actual).toEqual([16]);
   })
 })

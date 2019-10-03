@@ -2,7 +2,7 @@
   "name": "othello",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://cksharma11.github.io/Othello-React",
+  "homepage": "https://cksharma11.github.io/othello-board",
   "dependencies": {
     "react": "^16.10.1",
     "react-dom": "^16.10.1",

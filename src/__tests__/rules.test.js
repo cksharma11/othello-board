@@ -250,7 +250,7 @@ describe('upsideCoinsValidation', () => {
     data[16].isPlaced = true;
     data[16].color = 'black';
 
-    const actual = upsideCoinsValidation(data, 32, 'white');
+    const actual = upsideCoinsValidation(data, 24, 'white');
     expect(actual).toEqual([16]);
   })
 })
@@ -305,8 +305,8 @@ describe('downsideCoinsValidation', () => {
   it('should handle right bottom', () => {
     const data = { ...coins };
 
-    data[32].isPlaced = true;
-    data[32].color = 'white';
+    data[24].isPlaced = true;
+    data[24].color = 'white';
     data[16].isPlaced = true;
     data[16].color = 'black';
 

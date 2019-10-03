@@ -55,7 +55,7 @@ const downsideCoinsValidation = (coins, position, activeColor) => {
 
   const coinsToReplace = [];
   let shouldReplace = false;
-  for (let i = position + 8; i <= position + ((diff) * 8); i += 8) {
+  for (let i = position + 8; i <= position + ((diff) * 8) && i <= 64; i += 8) {
     if (coins[i].isPlaced && coins[i].color !== activeColor) {
       coinsToReplace.push(i);
     }
@@ -107,12 +107,12 @@ const rightUpCrossCoinsValidation = (coins, position, activeColor) => {
 }
 
 const leftDownCrossCoinsValidation = (coins, position, activeColor) => {
-  let diff = 8 - Math.round(position / 8) - 1;
+  let diff = 8 - Math.round(position / 8);
   if (diff === 0) return [];
 
   const coinsToReplace = [];
   let shouldReplace = false;
-  for (let i = position + 7; diff > 0; i += 7) {
+  for (let i = position + 7; diff > 0 && i <= 64 ; i += 7) {
     diff = diff -1;
     if (coins[i].isPlaced && coins[i].color !== activeColor) {
       coinsToReplace.push(i);
@@ -173,5 +173,6 @@ export {
   upsideCoinsValidation,
   downsideCoinsValidation,
   leftUpCrossCoinsValidation,
-  rightUpCrossCoinsValidation
+  rightUpCrossCoinsValidation,
+  leftDownCrossCoinsValidation
 };

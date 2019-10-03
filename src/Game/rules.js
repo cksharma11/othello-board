@@ -1,147 +1,144 @@
+const isNextCoinPlacedAndDoesNotHaveSameColor = (coin, activeColor) => {
+  return coin.isPlaced && coin.color !== activeColor;
+}
+
+const isActiveColorCoin = (coin, activeColor) => {
+  return coin.color === activeColor;
+}
+
 const rightSideCoinsValidation = (coins, position, activeColor) => {
-  const diff = Math.ceil(position / 8) * 8 - position;
+  const distance = Math.ceil(position / 8) * 8 - position;
   const coinsToReplace = [];
-  let shouldReplace = false;
-  for (let i = position + 1; i <= position + diff; i++) {
-    if (coins[i].isPlaced && coins[i].color !== activeColor) {
-      coinsToReplace.push(i);
+  for (let index = position + 1; index <= position + distance; index++) {
+    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
+      coinsToReplace.push(index);
     }
-    if (coins[i].color === activeColor) {
-      shouldReplace = true;
-      break;
+    if (isActiveColorCoin(coins[index], activeColor)) {
+      return coinsToReplace;
     }
   }
-  return shouldReplace ? coinsToReplace : [];
+  return [];
+}
+
+const getDistanceForLeftSideCoinsValidation = (position) => {
+  let distance = position - Math.floor(position / 8) * 8;
+  distance = distance === 0 ? 8 : distance;
+  return distance;
 }
 
 const leftSideCoinsValidation = (coins, position, activeColor) => {
-  let diff = position - Math.floor(position / 8) * 8;
-  diff = diff === 0 ? 8 : diff;
+  const distance = getDistanceForLeftSideCoinsValidation(position);
   const coinsToReplace = [];
-  let shouldReplace = false;
-  for (let i = position - 1; i > position - diff - 1 && i > 0; i--) {
-    if (coins[i].isPlaced && coins[i].color !== activeColor) {
-      coinsToReplace.push(i);
+  for (let index = position - 1; index > position - distance - 1 && index > 0; index--) {
+    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
+      coinsToReplace.push(index);
     }
-    if (coins[i].color === activeColor) {
-      shouldReplace = true;
-      break;
+    if (isActiveColorCoin(coins[index], activeColor)) {
+      return coinsToReplace;
     }
   }
-  return shouldReplace ? coinsToReplace : [];
+  return [];
 }
 
 const upsideCoinsValidation = (coins, position, activeColor) => {
-  let diff = Math.round(position / 8);
-  if (diff === 0) return [];
+  let distance = Math.round(position / 8);
+  if (distance === 0) return [];
 
   const coinsToReplace = [];
-  let shouldReplace = false;
-  for (let i = position - 8; i >= position - ((diff) * 8) && i > 0; i -= 8) {
-    if (coins[i].isPlaced && coins[i].color !== activeColor) {
-      coinsToReplace.push(i);
+  for (let index = position - 8; index >= position - ((distance) * 8) && index > 0; index -= 8) {
+    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
+      coinsToReplace.push(index);
     }
-    if (coins[i].color === activeColor) {
-      shouldReplace = true;
-      break;
+    if (isActiveColorCoin(coins[index], activeColor)) {
+      return coinsToReplace;
     }
   }
-  return shouldReplace ? coinsToReplace : [];
+  return [];
 }
 
 const downsideCoinsValidation = (coins, position, activeColor) => {
-  let diff = 8 - Math.round(position / 8);
-  if (diff === 0) return [];
+  let distance = 8 - Math.round(position / 8);
+  if (distance === 0) return [];
 
   const coinsToReplace = [];
-  let shouldReplace = false;
-  for (let i = position + 8; i <= position + ((diff) * 8) && i <= 64; i += 8) {
-    if (coins[i].isPlaced && coins[i].color !== activeColor) {
-      coinsToReplace.push(i);
+  for (let index = position + 8; index <= position + ((distance) * 8) && index <= 64; index += 8) {
+    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
+      coinsToReplace.push(index);
     }
-    if (coins[i].color === activeColor) {
-      shouldReplace = true;
-      break;
+    if (isActiveColorCoin(coins[index], activeColor)) {
+      return coinsToReplace;
     }
   }
-  return shouldReplace ? coinsToReplace : [];
+  return [];
 }
 
 
 const leftUpCrossCoinsValidation = (coins, position, activeColor) => {
-  let diff = Math.round(position / 8) - 1;
-  if (diff === 0) return [];
+  let distance = Math.round(position / 8) - 1;
+  if (distance === 0) return [];
 
   const coinsToReplace = [];
-  let shouldReplace = false;
-  for (let i = position - 9; diff > 0 && i > 0; i -= 9) {
-    diff = diff - 1;
-    if (coins[i].isPlaced && coins[i].color !== activeColor) {
-      coinsToReplace.push(i);
+  for (let index = position - 9; distance > 0 && index > 0; index -= 9) {
+    distance = distance - 1;
+    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
+      coinsToReplace.push(index);
     }
-    if (coins[i].color === activeColor) {
-      shouldReplace = true;
-      break;
+    if (isActiveColorCoin(coins[index], activeColor)) {
+      return coinsToReplace;
     }
   }
-  return shouldReplace ? coinsToReplace : [];
+  return [];
 }
 
 const rightUpCrossCoinsValidation = (coins, position, activeColor) => {
-  let diff = Math.floor(position / 8);
-  if (diff === 0) return [];
+  let distance = Math.floor(position / 8);
+  if (distance === 0) return [];
 
   const coinsToReplace = [];
-  let shouldReplace = false;
-  for (let i = position - 7; diff > 0; i -= 7) {
-    diff = diff -1;
-    if (coins[i].isPlaced && coins[i].color !== activeColor) {
-      coinsToReplace.push(i);
+  for (let index = position - 7; distance > 0; index -= 7) {
+    distance = distance -1;
+    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
+      coinsToReplace.push(index);
     }
-    if (coins[i].color === activeColor) {
-      shouldReplace = true;
-      break;
+    if (isActiveColorCoin(coins[index], activeColor)) {
+      return coinsToReplace;
     }
   }
-  return shouldReplace ? coinsToReplace : [];
+  return [];
 }
 
 const leftDownCrossCoinsValidation = (coins, position, activeColor) => {
-  let diff = 8 - Math.round(position / 8);
-  if (diff === 0) return [];
+  let distance = 8 - Math.round(position / 8);
+  if (distance === 0) return [];
 
   const coinsToReplace = [];
-  let shouldReplace = false;
-  for (let i = position + 7; diff > 0 && i <= 64 ; i += 7) {
-    diff = diff -1;
-    if (coins[i].isPlaced && coins[i].color !== activeColor) {
-      coinsToReplace.push(i);
+  for (let index = position + 7; distance > 0 && index <= 64 ; index += 7) {
+    distance = distance -1;
+    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
+      coinsToReplace.push(index);
     }
-    if (coins[i].color === activeColor) {
-      shouldReplace = true;
-      break;
+    if (isActiveColorCoin(coins[index], activeColor)) {
+      return coinsToReplace;
     }
   }
-  return shouldReplace ? coinsToReplace : [];
+  return [];
 }
 
 const rightDownCrossCoinsValidation = (coins, position, activeColor) => {
-  let diff = 8 - Math.round(position / 8);
-  if (diff === 0) return [];
+  let distance = 8 - Math.round(position / 8);
+  if (distance === 0) return [];
 
   const coinsToReplace = [];
-  let shouldReplace = false;
-  for (let i = position + 9; diff > 0 && i <= 64; i += 9) {
-    diff = diff - 1;
-    if (coins[i].isPlaced && coins[i].color !== activeColor) {
-      coinsToReplace.push(i);
+  for (let index = position + 9; distance > 0 && index <= 64; index += 9) {
+    distance = distance - 1;
+    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
+      coinsToReplace.push(index);
     }
-    if (coins[i].color === activeColor) {
-      shouldReplace = true;
-      break;
+    if (isActiveColorCoin(coins[index], activeColor)) {
+      return coinsToReplace;
     }
   }
-  return shouldReplace ? coinsToReplace : [];
+  return [];
 }
 
 const rulesValidator = (coins, currentlyPlacedCoin) => {
@@ -160,8 +157,8 @@ const rulesValidator = (coins, currentlyPlacedCoin) => {
   ];
 
   const update = { ...coins };
-  coinsToReplace.forEach(i => {
-    update[i].color = activeColor === 'black' ? 'black' : 'white';
+  coinsToReplace.forEach(index => {
+    update[index].color = activeColor === 'black' ? 'black' : 'white';
   })
   return update;
 }

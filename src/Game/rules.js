@@ -171,5 +171,7 @@ export {
   rightSideCoinsValidation, 
   leftSideCoinsValidation, 
   upsideCoinsValidation,
-  downsideCoinsValidation
+  downsideCoinsValidation,
+  leftUpCrossCoinsValidation,
+  rightUpCrossCoinsValidation
 };

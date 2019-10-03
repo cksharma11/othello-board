@@ -2,7 +2,9 @@ import {
   rightSideCoinsValidation,
   leftSideCoinsValidation,
   upsideCoinsValidation,
-  downsideCoinsValidation
+  downsideCoinsValidation,
+  leftUpCrossCoinsValidation,
+  rightUpCrossCoinsValidation
 } from "../Game/rules";
 
 const coins = {
@@ -308,5 +310,119 @@ describe('downsideCoinsValidation', () => {
 
     const actual = downsideCoinsValidation(data, 8, 'white');
     expect(actual).toEqual([16]);
+  })
+})
+
+describe('leftUpCrossCoinsValidation', () => {
+  it('should right top coins', () => {
+    const data = { ...coins };
+
+    data[1].isPlaced = true;
+    data[1].color = 'white';
+
+    data[10].isPlaced = true;
+    data[10].color = 'black';
+
+    data[19].isPlaced = true;
+    data[19].color = 'black';
+
+    const actual = leftUpCrossCoinsValidation(data, 28, 'white');
+    expect(actual).toEqual([19, 10]);
+  })
+
+  it('should handle middle up coins', () => {
+    const data = { ...coins };
+
+    data[37].isPlaced = true;
+    data[37].color = 'white';
+    data[46].isPlaced = true;
+    data[46].color = 'black';
+
+    data[55].isPlaced = true;
+    data[55].color = 'black';
+
+    const actual = leftUpCrossCoinsValidation(data, 64, 'white');
+    expect(actual).toEqual([55, 46]);
+  })
+
+  it('should handle right top coins', () => {
+    const data = { ...coins };
+
+    data[7].isPlaced = true;
+    data[7].color = 'black';
+    data[15].isPlaced = true;
+    data[15].color = 'white';
+
+    const actual = leftUpCrossCoinsValidation(data, 24, 'black');
+    expect(actual).toEqual([15]);
+  })
+
+  it('should handle right bottom', () => {
+    const data = { ...coins };
+
+    data[41].isPlaced = true;
+    data[41].color = 'white';
+    data[50].isPlaced = true;
+    data[50].color = 'black';
+
+    const actual = leftUpCrossCoinsValidation(data, 59, 'white');
+    expect(actual).toEqual([50]);
+  })
+})
+
+describe('rightUpCrossCoinsValidation', () => {
+  it('should right top coins', () => {
+    const data = { ...coins };
+
+    data[8].isPlaced = true;
+    data[8].color = 'white';
+
+    data[15].isPlaced = true;
+    data[15].color = 'black';
+
+    data[22].isPlaced = true;
+    data[22].color = 'black';
+
+    const actual = rightUpCrossCoinsValidation(data, 29, 'white');
+    expect(actual).toEqual([22, 15]);
+  })
+
+  it('should handle middle up coins', () => {
+    const data = { ...coins };
+
+    data[50].isPlaced = true;
+    data[50].color = 'black';
+    data[43].isPlaced = true;
+    data[43].color = 'black';
+
+    data[36].isPlaced = true;
+    data[36].color = 'white';
+
+    const actual = rightUpCrossCoinsValidation(data, 57, 'white');
+    expect(actual).toEqual([50, 43]);
+  })
+
+  it('should handle right top coins', () => {
+    const data = { ...coins };
+
+    data[55].isPlaced = true;
+    data[55].color = 'black';
+    data[48].isPlaced = true;
+    data[48].color = 'white';
+
+    const actual = rightUpCrossCoinsValidation(data, 62, 'white');
+    expect(actual).toEqual([55]);
+  })
+
+  it('should handle right bottom', () => {
+    const data = { ...coins };
+
+    data[10].isPlaced = true;
+    data[10].color = 'white';
+    data[3].isPlaced = true;
+    data[3].color = 'black';
+
+    const actual = rightUpCrossCoinsValidation(data, 17, 'black');
+    expect(actual).toEqual([10]);
   })
 })

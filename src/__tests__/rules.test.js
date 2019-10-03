@@ -313,6 +313,18 @@ describe('downsideCoinsValidation', () => {
     const actual = downsideCoinsValidation(data, 8, 'white');
     expect(actual).toEqual([16]);
   })
+
+  xit('should handle empty cell', () => {
+    const data = { ...coins };
+
+    data[32].isPlaced = true;
+    data[32].color = 'white';
+    data[16].isPlaced = true;
+    data[16].color = 'black';
+
+    const actual = downsideCoinsValidation(data, 8, 'white');
+    expect(actual).toEqual([]);
+  })
 })
 
 describe('leftUpCrossCoinsValidation', () => {
@@ -369,6 +381,18 @@ describe('leftUpCrossCoinsValidation', () => {
 
     const actual = leftUpCrossCoinsValidation(data, 59, 'white');
     expect(actual).toEqual([50]);
+  })
+
+  it('should handle empty cell case', () => {
+    const data = { ...coins };
+
+    data[33].isPlaced = true;
+    data[33].color = 'white';
+    data[42].isPlaced = true;
+    data[42].color = 'black';
+
+    const actual = leftUpCrossCoinsValidation(data, 60, 'white');
+    expect(actual).toEqual([]);
   })
 })
 
@@ -427,6 +451,18 @@ describe('rightUpCrossCoinsValidation', () => {
     const actual = rightUpCrossCoinsValidation(data, 17, 'black');
     expect(actual).toEqual([10]);
   })
+
+  it('should handle empty cell case', () => {
+    const data = { ...coins };
+
+    data[4].isPlaced = true;
+    data[4].color = 'white';
+    data[11].isPlaced = true;
+    data[11].color = 'black';
+
+    const actual = rightUpCrossCoinsValidation(data, 25, 'black');
+    expect(actual).toEqual([]);
+  })
 })
 
 describe('leftDownCrossCoinsValidation', () => {
@@ -484,6 +520,18 @@ describe('leftDownCrossCoinsValidation', () => {
     const actual = leftDownCrossCoinsValidation(data, 48, 'white');
     expect(actual).toEqual([55]);
   })
+
+  it('should handle right bottom', () => {
+    const data = { ...coins };
+
+    data[40].isPlaced = true;
+    data[40].color = 'white';
+    data[47].isPlaced = true;
+    data[47].color = 'black';
+
+    const actual = leftDownCrossCoinsValidation(data, 61, 'white');
+    expect(actual).toEqual([]);
+  })
 })
 
 describe('rightDownCrossCoinsValidation', () => {
@@ -538,5 +586,17 @@ describe('rightDownCrossCoinsValidation', () => {
 
     const actual = rightDownCrossCoinsValidation(data, 41, 'black');
     expect(actual).toEqual([50]);
+  })
+
+  it('should handle right bottom', () => {
+    const data = { ...coins };
+
+    data[33].isPlaced = true;
+    data[33].color = 'white';
+    data[42].isPlaced = true;
+    data[42].color = 'black';
+
+    const actual = rightDownCrossCoinsValidation(data, 60, 'black');
+    expect(actual).toEqual([]);
   })
 })

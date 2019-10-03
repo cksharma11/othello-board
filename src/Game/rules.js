@@ -48,7 +48,7 @@ const upsideCoinsValidation = (coins, position, activeColor) => {
   if (distance === 0) return [];
 
   const coinsToReplace = [];
-  for (let index = position - MAX_ROW_COUNT; index >= position - ((distance) * MAX_ROW_COUNT) && index > 0; index -= MAX_ROW_COUNT) {
+  for (let index = position - MAX_ROW_COUNT; index > 0; index -= MAX_ROW_COUNT) {
     if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
       coinsToReplace.push(index);
     }
@@ -64,7 +64,7 @@ const downsideCoinsValidation = (coins, position, activeColor) => {
   if (distance === 0) return [];
 
   const coinsToReplace = [];
-  for (let index = position + MAX_ROW_COUNT; index <= position + ((distance) * MAX_ROW_COUNT) && index <= MAX_CELL_COUNT; index += MAX_ROW_COUNT) {
+  for (let index = position + MAX_ROW_COUNT; index <= MAX_CELL_COUNT; index += MAX_ROW_COUNT) {
     if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
       coinsToReplace.push(index);
     }
@@ -77,12 +77,11 @@ const downsideCoinsValidation = (coins, position, activeColor) => {
 
 
 const leftUpCrossCoinsValidation = (coins, position, activeColor) => {
-  let distance = Math.round(position / MAX_ROW_COUNT) - 1;
+  const distance = Math.round(position / MAX_ROW_COUNT) - 1;
   if (distance === 0) return [];
 
   const coinsToReplace = [];
-  for (let index = position - 9; distance > 0 && index > 0; index -= 9) {
-    distance = distance - 1;
+  for (let index = position - 9; index > 0; index -= 9) {
     if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
       coinsToReplace.push(index);
     }
@@ -94,12 +93,11 @@ const leftUpCrossCoinsValidation = (coins, position, activeColor) => {
 }
 
 const rightUpCrossCoinsValidation = (coins, position, activeColor) => {
-  let distance = Math.floor(position / MAX_ROW_COUNT);
+  const distance = Math.floor(position / MAX_ROW_COUNT);
   if (distance === 0) return [];
 
   const coinsToReplace = [];
-  for (let index = position - 7; distance > 0; index -= 7) {
-    distance = distance -1;
+  for (let index = position - 7; index > 0; index -= 7) {
     if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
       coinsToReplace.push(index);
     }
@@ -111,12 +109,11 @@ const rightUpCrossCoinsValidation = (coins, position, activeColor) => {
 }
 
 const leftDownCrossCoinsValidation = (coins, position, activeColor) => {
-  let distance = MAX_ROW_COUNT - Math.round(position / MAX_ROW_COUNT);
+  const distance = MAX_ROW_COUNT - Math.round(position / MAX_ROW_COUNT);
   if (distance === 0) return [];
 
   const coinsToReplace = [];
-  for (let index = position + 7; distance > 0 && index <= MAX_CELL_COUNT ; index += 7) {
-    distance = distance -1;
+  for (let index = position + 7; index <= MAX_CELL_COUNT ; index += 7) {
     if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
       coinsToReplace.push(index);
     }
@@ -128,12 +125,11 @@ const leftDownCrossCoinsValidation = (coins, position, activeColor) => {
 }
 
 const rightDownCrossCoinsValidation = (coins, position, activeColor) => {
-  let distance = MAX_ROW_COUNT - Math.round(position / MAX_ROW_COUNT);
+  const distance = MAX_ROW_COUNT - Math.round(position / MAX_ROW_COUNT);
   if (distance === 0) return [];
 
   const coinsToReplace = [];
-  for (let index = position + 9; distance > 0 && index <= MAX_CELL_COUNT; index += 9) {
-    distance = distance - 1;
+  for (let index = position + 9; index <= MAX_CELL_COUNT; index += 9) {
     if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], activeColor)) {
       coinsToReplace.push(index);
     }

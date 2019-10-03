@@ -1,24 +1,11 @@
 import React, {useState} from 'react';
 import Coin from '../Coin/Coin';
 import { rulesValidator } from './rules';
-
-const createBoard = () => {
-  const board = {}
-  new Array(64).fill(1).forEach((e, i) => {
-      board[i + 1] = {
-        isPlaced: false,
-        color: null,
-        position: i + 1
-      }
-  })
-  return board;
-}
+import { createBoard, createId, colors } from './gameHelper';
 
 const Game = () => {
-  const colors = ["white", "black"];
   const [board, setBoard] = useState(createBoard());
   const [activePlayer, setActivePlayer] = useState(0);
-  const createId = (initial, i) => initial * 8 + i + 1;
 
   const updateActivePlayer = () => {
     const update = 1 - activePlayer;
@@ -26,6 +13,7 @@ const Game = () => {
   }
 
   const placeCoin = (id, color) => {
+    if (board[id].isPlaced) return;
     const update = { ...board };
     update[id] = { ...update[id], isPlaced: true, color };
     setBoard(update);
@@ -42,7 +30,7 @@ const Game = () => {
             onClick={placeCoin.bind(null, id, colors[activePlayer])}
             id={id}
             key={id}
-            className="box" 
+            className="box"
           >
             {board[id].isPlaced && <Coin color={board[id].color}/> }
             </div>
@@ -52,10 +40,12 @@ const Game = () => {
   }
 
   return (
-    new Array(8).fill(0).map((e, i) => {
-      return <div className="row">{createRow(i)}</div>
-    })
+    <div className="board">
+      {new Array(8).fill(0).map((e, i) => {
+        return <div className="row">{createRow(i)}</div>
+      })}
+    </div>
   )
 }
-
+  
 export default Game;

@@ -3,6 +3,7 @@ html, body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background: whitesmoke;
 }
 
 .box {
@@ -35,4 +36,13 @@ html, body {
 
 .row {
   display: flex;
+}
+
+.board {
+  border: 5px solid gray;
+  border-radius: 5px;
+}
+
+h1 {
+  font-size: 20px;
 }

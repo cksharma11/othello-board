@@ -37,7 +37,7 @@ const upsideCoinsValidation = (coins, position, activeColor) => {
 
   const coinsToReplace = [];
   let shouldReplace = false;
-  for (let i = position - 8; i >= position - ((diff) * 8); i -= 8) {
+  for (let i = position - 8; i >= position - ((diff) * 8) && i > 0; i -= 8) {
     if (coins[i].isPlaced && coins[i].color !== activeColor) {
       coinsToReplace.push(i);
     }
@@ -50,7 +50,7 @@ const upsideCoinsValidation = (coins, position, activeColor) => {
 }
 
 const downsideCoinsValidation = (coins, position, activeColor) => {
-  let diff = 8 - Math.round(position / 8) - 1;
+  let diff = 8 - Math.round(position / 8);
   if (diff === 0) return [];
 
   const coinsToReplace = [];
@@ -170,5 +170,6 @@ export {
   rulesValidator, 
   rightSideCoinsValidation, 
   leftSideCoinsValidation, 
-  upsideCoinsValidation
+  upsideCoinsValidation,
+  downsideCoinsValidation
 };

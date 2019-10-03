@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/othello-board/static/css/main.321d4173.chunk.css",
+    "main.js": "/othello-board/static/js/main.6f08c6f9.chunk.js",
+    "main.js.map": "/othello-board/static/js/main.6f08c6f9.chunk.js.map",
+    "runtime-main.js": "/othello-board/static/js/runtime-main.67766b90.js",
+    "runtime-main.js.map": "/othello-board/static/js/runtime-main.67766b90.js.map",
+    "static/js/2.fc693b72.chunk.js": "/othello-board/static/js/2.fc693b72.chunk.js",
+    "static/js/2.fc693b72.chunk.js.map": "/othello-board/static/js/2.fc693b72.chunk.js.map",
+    "index.html": "/othello-board/index.html",
+    "precache-manifest.c0ab35579564e8fa136d8f948f7bcb7e.js": "/othello-board/precache-manifest.c0ab35579564e8fa136d8f948f7bcb7e.js",
+    "service-worker.js": "/othello-board/service-worker.js",
+    "static/css/main.321d4173.chunk.css.map": "/othello-board/static/css/main.321d4173.chunk.css.map"
+  }
+}

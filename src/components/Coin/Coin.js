@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Coin = ({ color }) => {
-  return <div className={`coin ${color}`}></div>
+  return <div className={`coin ${color}`}></div>;
 };
 
-export default Coin
+export default Coin;

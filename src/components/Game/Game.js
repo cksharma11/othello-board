@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import Coin from '../Coin/Coin';
-import { getUpdatedBoard, isValidMove, getPossibleMoves } from '../../engine/rules';
-import { createBoard, createId, colors } from '../../engine/gameHelper';
+import React, { useState, useEffect } from "react";
+import Coin from "../Coin/Coin";
+import {
+  getUpdatedBoard,
+  isValidMove,
+  getPossibleMoves
+} from "../../engine/rules";
+import { createBoard, createId, colors } from "../../engine/gameHelper";
 
 const Game = () => {
   const [board, setBoard] = useState(createBoard());
@@ -15,7 +19,7 @@ const Game = () => {
   const updateActivePlayer = () => {
     const update = 1 - activePlayer;
     setActivePlayer(update);
-  }
+  };
 
   const placeCoin = (id, color) => {
     const update = { ...board };
@@ -25,34 +29,32 @@ const Game = () => {
     setBoard(update);
     getUpdatedBoard(update, update[id]);
     updateActivePlayer();
-  }
+  };
 
-  const createRow = (initial) => {
-    return (
-      new Array(8).fill(0).map((e, i) => {
-        const id = createId(initial, i);
-        return (
-          <div
-            onClick={placeCoin.bind(null, id, colors[activePlayer])}
-            id={id}
-            key={id}
-            className={`box `}
-          >
-            {possibleMoves.includes(id) &&<Coin color="empty" /> }
-            {board[id].isPlaced && <Coin color={board[id].color}/> }
-            </div>
-        )
-      })
-    )
-  }
+  const createRow = initial => {
+    return new Array(8).fill(0).map((e, i) => {
+      const id = createId(initial, i);
+      return (
+        <div
+          onClick={placeCoin.bind(null, id, colors[activePlayer])}
+          id={id}
+          key={id}
+          className={`box `}
+        >
+          {possibleMoves.includes(id) && <Coin color="empty" />}
+          {board[id].isPlaced && <Coin color={board[id].color} />}
+        </div>
+      );
+    });
+  };
 
   return (
     <div className="board">
       {new Array(8).fill(0).map((e, i) => {
-        return <div className="row">{createRow(i)}</div>
+        return <div className="row">{createRow(i)}</div>;
       })}
     </div>
-  )
-}
-  
+  );
+};
+
 export default Game;

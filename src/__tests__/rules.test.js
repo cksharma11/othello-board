@@ -7,7 +7,7 @@ import {
   rightUpCrossCoinsValidation,
   leftDownCrossCoinsValidation,
   rightDownCrossCoinsValidation
-} from "../Game/rules";
+} from "../engine/rules";
 
 const coins = {
   1: { isPlaced: false, color: null },

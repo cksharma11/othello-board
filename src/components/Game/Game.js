@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Coin from '../Coin/Coin';
-import { getUpdatedBoard, isValidMove, getPossibleMoves } from './rules';
-import { createBoard, createId, colors } from './gameHelper';
+import { getUpdatedBoard, isValidMove, getPossibleMoves } from '../../engine/rules';
+import { createBoard, createId, colors } from '../../engine/gameHelper';
 
 const Game = () => {
   const [board, setBoard] = useState(createBoard());

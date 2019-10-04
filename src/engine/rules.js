@@ -186,10 +186,14 @@ const isValidMove = (coins, inPlayCoin, color) => {
   return replaceableCoins.length > 0;
 }
 
+const isEmptyAndPossibleMove = (coins, coin,  color) => {
+  return getReplaceableCoins(coins, coin, color).length && !coin.isPlaced;
+}
+
 const getPossibleMoves = (coins, color) => {
   const possibleMoves = [];
   Object.keys(coins).forEach(e => {
-    if (getReplaceableCoins(coins, coins[e], color).length && !coins[e].isPlaced) {
+    if (isEmptyAndPossibleMove(coins, coins[e], color)) {
       possibleMoves.push(+e);
     }
   })

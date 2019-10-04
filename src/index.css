@@ -1,9 +1,8 @@
-html, body {
+html,
+body {
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100vh;
-  background: whitesmoke;
 }
 
 .box {
@@ -55,4 +54,25 @@ h1 {
 .empty {
   background: green;
   border: 1px solid rgb(165, 163, 163);
+}
+
+.score-board {
+  height: 100px;
+  width: 98%;
+  font-size: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  background: green;
+  align-items: center;
+  border-radius: 5px;
+  border: 5px solid gray;
+}
+
+.score-container {
+  display: flex;
+  width: 150px;
+  font-size: 60px;
+  padding: 10px;
+  justify-content: space-between;
 }

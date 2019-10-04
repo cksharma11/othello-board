@@ -3,14 +3,18 @@ import Coin from "../Coin/Coin";
 import { getUpdatedBoard } from "../../engine/rules";
 import { createBoard, createId, colors } from "../../engine/gameHelper";
 import { getPossibleMoves, isValidMove } from "../../engine/moveHelper";
+import ScoreBoard from "../ScoreBoard/ScoreBoard";
+import { getScore } from "../../engine/score";
 
 const Game = () => {
   const [board, setBoard] = useState(createBoard());
   const [activePlayer, setActivePlayer] = useState(0);
   const [possibleMoves, setPossibleMoves] = useState([]);
+  const [score, setScore] = useState({ black: 2, white: 2 });
 
   useEffect(() => {
     setPossibleMoves(getPossibleMoves(board, colors[activePlayer]));
+    setScore(getScore(board));
   }, [board, activePlayer]);
 
   const updateActivePlayer = () => {
@@ -46,10 +50,17 @@ const Game = () => {
   };
 
   return (
-    <div className="board">
-      {new Array(8).fill(0).map((e, i) => {
-        return <div className="row">{createRow(i)}</div>;
-      })}
+    <div>
+      <ScoreBoard
+        black={score.black}
+        white={score.white}
+        currentColor={colors[activePlayer]}
+      />
+      <div className="board">
+        {new Array(8).fill(0).map((e, i) => {
+          return <div className="row">{createRow(i)}</div>;
+        })}
+      </div>
     </div>
   );
 };

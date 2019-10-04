@@ -78,7 +78,7 @@ const coins = {
 
 describe("rightSideCoinsValidation", () => {
   it("should handle starting edge case", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[2].isPlaced = true;
     data[2].color = "black";
@@ -93,7 +93,7 @@ describe("rightSideCoinsValidation", () => {
   });
 
   it("should handle last row corner case", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[58].isPlaced = true;
     data[58].color = "black";
@@ -108,7 +108,7 @@ describe("rightSideCoinsValidation", () => {
   });
 
   it("should handle right side corner case", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[6].isPlaced = true;
     data[6].color = "black";
@@ -123,7 +123,7 @@ describe("rightSideCoinsValidation", () => {
   });
 
   it("should handle middle coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[4].isPlaced = true;
     data[4].color = "white";
@@ -137,7 +137,7 @@ describe("rightSideCoinsValidation", () => {
 
 describe("leftSideCoinsValidation", () => {
   it("should handle starting edge case", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[1].isPlaced = true;
     data[1].color = "black";
@@ -152,7 +152,7 @@ describe("leftSideCoinsValidation", () => {
   });
 
   it("should handle last row corner case", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[58].isPlaced = true;
     data[58].color = "black";
@@ -167,7 +167,7 @@ describe("leftSideCoinsValidation", () => {
   });
 
   it("should handle right side corner case", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[6].isPlaced = true;
     data[6].color = "black";
@@ -182,7 +182,7 @@ describe("leftSideCoinsValidation", () => {
   });
 
   it("should handle middle coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[4].isPlaced = true;
     data[4].color = "white";
@@ -196,7 +196,7 @@ describe("leftSideCoinsValidation", () => {
 
 describe("upsideCoinsValidation", () => {
   it("should right top coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[1].isPlaced = true;
     data[1].color = "white";
@@ -212,7 +212,7 @@ describe("upsideCoinsValidation", () => {
   });
 
   it("should handle middle up coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[19].isPlaced = true;
     data[19].color = "white";
@@ -227,7 +227,7 @@ describe("upsideCoinsValidation", () => {
   });
 
   it("should handle right top coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[56].isPlaced = true;
     data[56].color = "black";
@@ -242,7 +242,7 @@ describe("upsideCoinsValidation", () => {
   });
 
   it("should handle right bottom", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[8].isPlaced = true;
     data[8].color = "white";
@@ -256,7 +256,7 @@ describe("upsideCoinsValidation", () => {
 
 describe("downsideCoinsValidation", () => {
   it("should right top coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[25].isPlaced = true;
     data[25].color = "white";
@@ -272,7 +272,7 @@ describe("downsideCoinsValidation", () => {
   });
 
   it("should handle middle up coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[43].isPlaced = true;
     data[43].color = "white";
@@ -287,7 +287,7 @@ describe("downsideCoinsValidation", () => {
   });
 
   it("should handle right top coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[48].isPlaced = true;
     data[48].color = "white";
@@ -302,7 +302,7 @@ describe("downsideCoinsValidation", () => {
   });
 
   it("should handle right bottom", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[24].isPlaced = true;
     data[24].color = "white";
@@ -313,8 +313,8 @@ describe("downsideCoinsValidation", () => {
     expect(actual).toEqual([16]);
   });
 
-  xit("should handle empty cell", () => {
-    const data = { ...coins };
+  it("should handle empty cell", () => {
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[32].isPlaced = true;
     data[32].color = "white";
@@ -328,7 +328,7 @@ describe("downsideCoinsValidation", () => {
 
 describe("leftUpCrossCoinsValidation", () => {
   it("should right top coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[1].isPlaced = true;
     data[1].color = "white";
@@ -344,7 +344,7 @@ describe("leftUpCrossCoinsValidation", () => {
   });
 
   it("should handle middle up coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[37].isPlaced = true;
     data[37].color = "white";
@@ -359,10 +359,10 @@ describe("leftUpCrossCoinsValidation", () => {
   });
 
   it("should handle right top coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
-    data[7].isPlaced = true;
-    data[7].color = "black";
+    data[6].isPlaced = true;
+    data[6].color = "black";
     data[15].isPlaced = true;
     data[15].color = "white";
 
@@ -371,7 +371,7 @@ describe("leftUpCrossCoinsValidation", () => {
   });
 
   it("should handle right bottom", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[41].isPlaced = true;
     data[41].color = "white";
@@ -383,7 +383,7 @@ describe("leftUpCrossCoinsValidation", () => {
   });
 
   it("should handle empty cell case", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[33].isPlaced = true;
     data[33].color = "white";
@@ -397,7 +397,7 @@ describe("leftUpCrossCoinsValidation", () => {
 
 describe("rightUpCrossCoinsValidation", () => {
   it("should right top coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[8].isPlaced = true;
     data[8].color = "white";
@@ -413,7 +413,7 @@ describe("rightUpCrossCoinsValidation", () => {
   });
 
   it("should handle middle up coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[50].isPlaced = true;
     data[50].color = "black";
@@ -428,7 +428,7 @@ describe("rightUpCrossCoinsValidation", () => {
   });
 
   it("should handle right top coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[55].isPlaced = true;
     data[55].color = "black";
@@ -440,7 +440,7 @@ describe("rightUpCrossCoinsValidation", () => {
   });
 
   it("should handle right bottom", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[10].isPlaced = true;
     data[10].color = "white";
@@ -452,7 +452,7 @@ describe("rightUpCrossCoinsValidation", () => {
   });
 
   it("should handle empty cell case", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[4].isPlaced = true;
     data[4].color = "white";
@@ -466,7 +466,7 @@ describe("rightUpCrossCoinsValidation", () => {
 
 describe("leftDownCrossCoinsValidation", () => {
   it("should right top coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[29].isPlaced = true;
     data[29].color = "white";
@@ -482,7 +482,7 @@ describe("leftDownCrossCoinsValidation", () => {
   });
 
   it("should handle middle up coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[43].isPlaced = true;
     data[43].color = "white";
@@ -497,7 +497,7 @@ describe("leftDownCrossCoinsValidation", () => {
   });
 
   it("should handle right top coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[15].isPlaced = true;
     data[15].color = "black";
@@ -509,7 +509,7 @@ describe("leftDownCrossCoinsValidation", () => {
   });
 
   it("should handle right bottom", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[62].isPlaced = true;
     data[62].color = "white";
@@ -521,7 +521,7 @@ describe("leftDownCrossCoinsValidation", () => {
   });
 
   it("should handle right bottom", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[40].isPlaced = true;
     data[40].color = "white";
@@ -535,7 +535,7 @@ describe("leftDownCrossCoinsValidation", () => {
 
 describe("rightDownCrossCoinsValidation", () => {
   it("should right top coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[10].isPlaced = true;
     data[10].color = "white";
@@ -551,7 +551,7 @@ describe("rightDownCrossCoinsValidation", () => {
   });
 
   it("should handle middle up coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[15].isPlaced = true;
     data[15].color = "white";
@@ -564,7 +564,7 @@ describe("rightDownCrossCoinsValidation", () => {
   });
 
   it("should handle right top coins", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[55].isPlaced = true;
     data[55].color = "black";
@@ -576,7 +576,7 @@ describe("rightDownCrossCoinsValidation", () => {
   });
 
   it("should handle right bottom", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[50].isPlaced = true;
     data[50].color = "white";
@@ -588,7 +588,7 @@ describe("rightDownCrossCoinsValidation", () => {
   });
 
   it("should handle right bottom", () => {
-    const data = { ...coins };
+    const data = JSON.parse(JSON.stringify(coins));
 
     data[33].isPlaced = true;
     data[33].color = "white";

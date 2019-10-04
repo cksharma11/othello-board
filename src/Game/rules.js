@@ -169,7 +169,7 @@ const getReplaceableCoins = (coins, inPlayCoin, color) => {
   return replaceableCoins;
 }
 
-const rulesValidator = (coins, inPlayCoin) => {
+const getUpdatedBoard = (coins, inPlayCoin) => {
   const replaceableCoins = getReplaceableCoins(coins, inPlayCoin);
 
   const inPlayColor = inPlayCoin.color;
@@ -186,8 +186,18 @@ const isValidMove = (coins, inPlayCoin, color) => {
   return replaceableCoins.length > 0;
 }
 
+const getPossibleMoves = (coins, color) => {
+  const possibleMoves = [];
+  Object.keys(coins).forEach(e => {
+    if (getReplaceableCoins(coins, coins[e], color).length && !coins[e].isPlaced) {
+      possibleMoves.push(+e);
+    }
+  })
+  return possibleMoves;
+}
+
 export { 
-  rulesValidator, 
+  getUpdatedBoard, 
   rightSideCoinsValidation, 
   leftSideCoinsValidation, 
   upsideCoinsValidation,
@@ -196,5 +206,6 @@ export {
   rightUpCrossCoinsValidation,
   leftDownCrossCoinsValidation,
   rightDownCrossCoinsValidation,
-  isValidMove
+  isValidMove,
+  getPossibleMoves
 };

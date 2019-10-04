@@ -1,11 +1,16 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Coin from '../Coin/Coin';
-import { rulesValidator, isValidMove } from './rules';
+import { getUpdatedBoard, isValidMove, getPossibleMoves } from './rules';
 import { createBoard, createId, colors } from './gameHelper';
 
 const Game = () => {
   const [board, setBoard] = useState(createBoard());
   const [activePlayer, setActivePlayer] = useState(0);
+  const [possibleMoves, setPossibleMoves] = useState([]);
+
+  useEffect(() => {
+    setPossibleMoves(getPossibleMoves(board, colors[activePlayer]));
+  }, [board, activePlayer]);
 
   const updateActivePlayer = () => {
     const update = 1 - activePlayer;
@@ -15,10 +20,10 @@ const Game = () => {
   const placeCoin = (id, color) => {
     const update = { ...board };
     if (!isValidMove(update, update[id], color)) return;
-    console.log('valid');
+
     update[id] = { ...update[id], isPlaced: true, color };
     setBoard(update);
-    rulesValidator(update, update[id]);
+    getUpdatedBoard(update, update[id]);
     updateActivePlayer();
   }
 
@@ -31,8 +36,9 @@ const Game = () => {
             onClick={placeCoin.bind(null, id, colors[activePlayer])}
             id={id}
             key={id}
-            className="box"
+            className={`box `}
           >
+            {possibleMoves.includes(id) &&<Coin color="empty" /> }
             {board[id].isPlaced && <Coin color={board[id].color}/> }
             </div>
         )

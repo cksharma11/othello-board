@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/othello-board/static/css/main.3b74131c.chunk.css",
+    "main.css": "/othello-board/static/css/main.30b38033.chunk.css",
     "main.js": "/othello-board/static/js/main.1796b061.chunk.js",
     "main.js.map": "/othello-board/static/js/main.1796b061.chunk.js.map",
     "runtime-main.js": "/othello-board/static/js/runtime-main.67766b90.js",
@@ -8,8 +8,8 @@
     "static/js/2.ba10a6fb.chunk.js": "/othello-board/static/js/2.ba10a6fb.chunk.js",
     "static/js/2.ba10a6fb.chunk.js.map": "/othello-board/static/js/2.ba10a6fb.chunk.js.map",
     "index.html": "/othello-board/index.html",
-    "precache-manifest.e5c42383d04afb9669766e60aaa0ced8.js": "/othello-board/precache-manifest.e5c42383d04afb9669766e60aaa0ced8.js",
+    "precache-manifest.2c5924aa0b609754a1f16815f43a7955.js": "/othello-board/precache-manifest.2c5924aa0b609754a1f16815f43a7955.js",
     "service-worker.js": "/othello-board/service-worker.js",
-    "static/css/main.3b74131c.chunk.css.map": "/othello-board/static/css/main.3b74131c.chunk.css.map"
+    "static/css/main.30b38033.chunk.css.map": "/othello-board/static/css/main.30b38033.chunk.css.map"
   }
 }

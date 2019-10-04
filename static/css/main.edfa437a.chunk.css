@@ -1,0 +1,2 @@
+body,html{height:100vh;background:#f5f5f5}.box,body,html{display:flex;justify-content:center;align-items:center}.box{height:70px;width:70px;border:1px solid #000;background:green;border-radius:1px;cursor:pointer}.coin{height:65px;width:65px;border:1px solid #000;background:green;border-radius:50%;background:wheat}.black{background:#000}.white{background:#fff}.row{display:flex}.board{border:5px solid grey;border-radius:5px}h1{font-size:20px}.possible-move{background:red}.empty{background:green;border:1px solid #a5a3a3}
+/*# sourceMappingURL=main.edfa437a.chunk.css.map */

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Coin from '../Coin/Coin';
-import { rulesValidator } from './rules';
+import { rulesValidator, isValidMove } from './rules';
 import { createBoard, createId, colors } from './gameHelper';
 
 const Game = () => {
@@ -13,8 +13,9 @@ const Game = () => {
   }
 
   const placeCoin = (id, color) => {
-    if (board[id].isPlaced) return;
     const update = { ...board };
+    if (!isValidMove(update, update[id], color)) return;
+    console.log('valid');
     update[id] = { ...update[id], isPlaced: true, color };
     setBoard(update);
     rulesValidator(update, update[id]);

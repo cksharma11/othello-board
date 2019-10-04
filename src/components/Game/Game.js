@@ -5,6 +5,7 @@ import { createBoard, createId, colors } from "../../engine/gameHelper";
 import { getPossibleMoves, isValidMove } from "../../engine/moveHelper";
 import ScoreBoard from "../ScoreBoard/ScoreBoard";
 import { getScore } from "../../engine/score";
+import { makeBotMove } from "../../engine/bot";
 
 const Game = () => {
   const [board, setBoard] = useState(createBoard());
@@ -15,6 +16,7 @@ const Game = () => {
   useEffect(() => {
     setPossibleMoves(getPossibleMoves(board, colors[activePlayer]));
     setScore(getScore(board));
+    if (colors[activePlayer] === 'black') makeBotMove(board);
   }, [board, activePlayer]);
 
   const updateActivePlayer = () => {

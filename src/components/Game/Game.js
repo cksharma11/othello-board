@@ -5,6 +5,7 @@ import { createBoard, createId, colors } from "../../engine/gameHelper";
 import { getPossibleMoves, isValidMove } from "../../engine/moveHelper";
 import ScoreBoard from "../ScoreBoard/ScoreBoard";
 import { getScore } from "../../engine/score";
+import Header from "../Header/Header";
 
 const Game = () => {
   const [board, setBoard] = useState(createBoard());
@@ -51,6 +52,7 @@ const Game = () => {
 
   return (
     <div>
+      <Header />
       <ScoreBoard
         black={score.black}
         white={score.white}

@@ -2,8 +2,11 @@ html,
 body {
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 100vh;
-  padding: 10px;
+  margin: 20px;
+  width: 100%;
+  background: whitesmoke;
 }
 
 .box {
@@ -75,4 +78,56 @@ h1 {
   font-size: 60px;
   padding: 10px;
   justify-content: space-between;
+}
+
+.header {
+  font-size: 40px;
+  padding: 5px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 790px) {
+  html,
+  body {
+    margin: 5px;
+    padding: 0;
+    width: auto;
+    align-items: baseline;
+  }
+  .box {
+    height: 35px;
+    width: 35px;
+  }
+
+  .coin {
+    height: 33px;
+    width: 33px;
+  }
+
+  .board {
+    border: 5px solid black;
+  }
+
+  .score-container {
+    align-items: baseline;
+    width: 90px;
+  }
+
+  .header {
+    font-size: 20px;
+    font-weight: normal;
+  }
+
+  .score-container {
+    height: 80px;
+    font-size: 45px;
+  }
+
+  .score-board {
+    height: 70px;
+    align-items: baseline;
+  }
 }

@@ -13,11 +13,9 @@ const isActiveColorCoin = (coin, inPlayColor) => {
   return coin.color === inPlayColor;
 };
 
-const rightSideCoinsValidation = (coins, position, inPlayColor) => {
-  const endDistance =
-    Math.ceil(position / MAX_ROW_COUNT) * MAX_ROW_COUNT - position;
+const validateCoins = ({ coins, start, inPlayColor, condition, next }) => {
   const replaceableCoins = [];
-  for (let index = position + 1; index <= position + endDistance; index++) {
+  for (let index = start; condition(index); index = next(index)) {
     if (coinNotPlaced(coins[index])) return [];
     if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], inPlayColor)) {
       replaceableCoins.push(index);
@@ -27,6 +25,17 @@ const rightSideCoinsValidation = (coins, position, inPlayColor) => {
     }
   }
   return [];
+};
+
+const rightSideCoinsValidation = (coins, position, inPlayColor) => {
+  const endDistance =
+    Math.ceil(position / MAX_ROW_COUNT) * MAX_ROW_COUNT - position;
+
+  const start = position + 1;
+  const condition = i => i <= position + endDistance;
+  const next = i => i + 1;
+
+  return validateCoins({ coins, start, condition, next, inPlayColor });
 };
 
 const getDistanceForLeftSideCoinsValidation = position => {
@@ -38,148 +47,79 @@ const getDistanceForLeftSideCoinsValidation = position => {
 
 const leftSideCoinsValidation = (coins, position, inPlayColor) => {
   const endDistance = getDistanceForLeftSideCoinsValidation(position);
-  const replaceableCoins = [];
   const loopEndCondition = position - endDistance - 1;
-  for (
-    let index = position - 1;
-    index > loopEndCondition && index > 0;
-    index--
-  ) {
-    if (coinNotPlaced(coins[index])) return [];
-    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], inPlayColor)) {
-      replaceableCoins.push(index);
-    }
-    if (isActiveColorCoin(coins[index], inPlayColor)) {
-      return replaceableCoins;
-    }
-  }
-  return [];
+
+  const start = position - 1;
+  const condition = i => i > loopEndCondition && i > 0;
+  const next = i => i - 1;
+
+  return validateCoins({ coins, start, condition, next, inPlayColor });
 };
 
 const upsideCoinsValidation = (coins, position, inPlayColor) => {
   let endDistance = Math.round(position / MAX_ROW_COUNT);
   if (endDistance === 0) return [];
 
-  const replaceableCoins = [];
-  for (
-    let index = position - MAX_ROW_COUNT;
-    index > 0;
-    index -= MAX_ROW_COUNT
-  ) {
-    if (coinNotPlaced(coins[index])) return [];
-    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], inPlayColor)) {
-      replaceableCoins.push(index);
-    }
-    if (isActiveColorCoin(coins[index], inPlayColor)) {
-      return replaceableCoins;
-    }
-  }
-  return [];
+  const start = position - MAX_ROW_COUNT;
+  const condition = i => i > 0;
+  const next = i => i - MAX_ROW_COUNT;
+
+  return validateCoins({ coins, start, condition, next, inPlayColor });
 };
 
 const downsideCoinsValidation = (coins, position, inPlayColor) => {
   let endDistance = MAX_ROW_COUNT - Math.round(position / MAX_ROW_COUNT);
   if (endDistance === 0) return [];
 
-  const replaceableCoins = [];
-  for (
-    let index = position + MAX_ROW_COUNT;
-    index <= MAX_CELL_COUNT;
-    index += MAX_ROW_COUNT
-  ) {
-    if (coinNotPlaced(coins[index])) return [];
-    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], inPlayColor)) {
-      replaceableCoins.push(index);
-    }
-    if (isActiveColorCoin(coins[index], inPlayColor)) {
-      return replaceableCoins;
-    }
-  }
-  return [];
+  const start = position + MAX_ROW_COUNT;
+  const condition = i => i <= MAX_CELL_COUNT;
+  const next = i => i + MAX_ROW_COUNT;
+
+  return validateCoins({ coins, start, condition, next, inPlayColor });
 };
 
 const leftUpCrossCoinsValidation = (coins, position, inPlayColor) => {
   const endDistance = Math.round(position / MAX_ROW_COUNT) - 1;
   if (endDistance === 0) return [];
 
-  const replaceableCoins = [];
-  for (
-    let index = position - LEFT_COIN_DIFFERENCE;
-    index > 0;
-    index -= LEFT_COIN_DIFFERENCE
-  ) {
-    if (coinNotPlaced(coins[index])) return [];
-    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], inPlayColor)) {
-      replaceableCoins.push(index);
-    }
-    if (isActiveColorCoin(coins[index], inPlayColor)) {
-      return replaceableCoins;
-    }
-  }
-  return [];
+  const start = position - LEFT_COIN_DIFFERENCE;
+  const condition = i => i > 0;
+  const next = i => i - LEFT_COIN_DIFFERENCE;
+
+  return validateCoins({ coins, start, condition, next, inPlayColor });
 };
 
 const rightUpCrossCoinsValidation = (coins, position, inPlayColor) => {
   const endDistance = Math.floor(position / MAX_ROW_COUNT);
   if (endDistance === 0) return [];
 
-  const replaceableCoins = [];
-  for (
-    let index = position - RIGHT_SIDE_COIN_DIFFERENCE;
-    index > 0;
-    index -= RIGHT_SIDE_COIN_DIFFERENCE
-  ) {
-    if (coinNotPlaced(coins[index])) return [];
-    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], inPlayColor)) {
-      replaceableCoins.push(index);
-    }
-    if (isActiveColorCoin(coins[index], inPlayColor)) {
-      return replaceableCoins;
-    }
-  }
-  return [];
+  const start = position - RIGHT_SIDE_COIN_DIFFERENCE;
+  const condition = i => i > 0;
+  const next = i => i - RIGHT_SIDE_COIN_DIFFERENCE;
+
+  return validateCoins({ coins, start, condition, next, inPlayColor });
 };
 
 const leftDownCrossCoinsValidation = (coins, position, inPlayColor) => {
   const endDistance = MAX_ROW_COUNT - Math.round(position / MAX_ROW_COUNT);
   if (endDistance === 0) return [];
 
-  const replaceableCoins = [];
-  for (
-    let index = position + RIGHT_SIDE_COIN_DIFFERENCE;
-    index <= MAX_CELL_COUNT;
-    index += RIGHT_SIDE_COIN_DIFFERENCE
-  ) {
-    if (coinNotPlaced(coins[index])) return [];
-    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], inPlayColor)) {
-      replaceableCoins.push(index);
-    }
-    if (isActiveColorCoin(coins[index], inPlayColor)) {
-      return replaceableCoins;
-    }
-  }
-  return [];
+  const start = position + RIGHT_SIDE_COIN_DIFFERENCE;
+  const condition = i => i <= MAX_CELL_COUNT;
+  const next = i => (i += RIGHT_SIDE_COIN_DIFFERENCE);
+
+  return validateCoins({ coins, start, condition, next, inPlayColor });
 };
 
 const rightDownCrossCoinsValidation = (coins, position, inPlayColor) => {
   const endDistance = MAX_ROW_COUNT - Math.round(position / MAX_ROW_COUNT);
   if (endDistance === 0) return [];
 
-  const replaceableCoins = [];
-  for (
-    let index = position + LEFT_COIN_DIFFERENCE;
-    index <= MAX_CELL_COUNT;
-    index += LEFT_COIN_DIFFERENCE
-  ) {
-    if (coinNotPlaced(coins[index])) return [];
-    if (isNextCoinPlacedAndDoesNotHaveSameColor(coins[index], inPlayColor)) {
-      replaceableCoins.push(index);
-    }
-    if (isActiveColorCoin(coins[index], inPlayColor)) {
-      return replaceableCoins;
-    }
-  }
-  return [];
+  const start = position + LEFT_COIN_DIFFERENCE;
+  const condition = i => i <= MAX_CELL_COUNT;
+  const next = i => (i += LEFT_COIN_DIFFERENCE);
+
+  return validateCoins({ coins, start, condition, next, inPlayColor });
 };
 
 const getReplaceableCoins = (coins, inPlayCoin, color) => {

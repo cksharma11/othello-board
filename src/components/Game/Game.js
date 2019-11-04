@@ -8,11 +8,15 @@ import { getScore } from "../../engine/score";
 import Header from "../Header/Header";
 import RestartButton from "../RestartButton/RestartButton";
 
+const initialScores = { black: 2, white: 2 };
+const initialActivePlayer = 0;
+const initialPossibleMoves = [];
+
 const Game = () => {
   const [board, setBoard] = useState(createBoard());
-  const [activePlayer, setActivePlayer] = useState(0);
-  const [possibleMoves, setPossibleMoves] = useState([]);
-  const [score, setScore] = useState({ black: 2, white: 2 });
+  const [activePlayer, setActivePlayer] = useState(initialActivePlayer);
+  const [possibleMoves, setPossibleMoves] = useState(initialPossibleMoves);
+  const [score, setScore] = useState(initialScores);
 
   useEffect(() => {
     setPossibleMoves(getPossibleMoves(board, colors[activePlayer]));
@@ -36,9 +40,9 @@ const Game = () => {
 
   const handleRestart = () => {
     setBoard(createBoard());
-    setScore({ black: 2, white: 2 });
-    setActivePlayer(0);
-    setPossibleMoves([]);
+    setScore(initialScores);
+    setActivePlayer(initialActivePlayer);
+    setPossibleMoves(initialPossibleMoves);
   };
 
   const createRow = initial => {

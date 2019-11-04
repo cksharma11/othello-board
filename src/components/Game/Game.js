@@ -6,6 +6,7 @@ import { getPossibleMoves, isValidMove } from "../../engine/moveHelper";
 import ScoreBoard from "../ScoreBoard/ScoreBoard";
 import { getScore } from "../../engine/score";
 import Header from "../Header/Header";
+import RestartButton from "../RestartButton/RestartButton";
 
 const Game = () => {
   const [board, setBoard] = useState(createBoard());
@@ -31,6 +32,13 @@ const Game = () => {
     setBoard(update);
     getUpdatedBoard(update, update[id]);
     updateActivePlayer();
+  };
+
+  const handleRestart = () => {
+    setBoard(createBoard());
+    setScore({ black: 2, white: 2 });
+    setActivePlayer(0);
+    setPossibleMoves([]);
   };
 
   const createRow = initial => {
@@ -63,6 +71,7 @@ const Game = () => {
           return <div className="row">{createRow(i)}</div>;
         })}
       </div>
+      <RestartButton onRestart={handleRestart} />
     </div>
   );
 };

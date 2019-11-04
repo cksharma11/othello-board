@@ -89,6 +89,22 @@ h1 {
   align-items: center;
 }
 
+.restart-button {
+  width: 50%;
+  height: 30px;
+  font-size: 15px;
+  background: green;
+  border: 2px solid black;
+  margin-top: 15px;
+  border-radius: 2px;
+}
+
+.restart-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (max-width: 790px) {
   html,
   body {

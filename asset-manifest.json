@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/othello-board/static/css/main.b6a75763.chunk.css",
-    "main.js": "/othello-board/static/js/main.23ecf1c1.chunk.js",
-    "main.js.map": "/othello-board/static/js/main.23ecf1c1.chunk.js.map",
+    "main.css": "/othello-board/static/css/main.fbdc1f9f.chunk.css",
+    "main.js": "/othello-board/static/js/main.d22de4d3.chunk.js",
+    "main.js.map": "/othello-board/static/js/main.d22de4d3.chunk.js.map",
     "runtime-main.js": "/othello-board/static/js/runtime-main.67766b90.js",
     "runtime-main.js.map": "/othello-board/static/js/runtime-main.67766b90.js.map",
     "static/js/2.ba10a6fb.chunk.js": "/othello-board/static/js/2.ba10a6fb.chunk.js",
     "static/js/2.ba10a6fb.chunk.js.map": "/othello-board/static/js/2.ba10a6fb.chunk.js.map",
     "index.html": "/othello-board/index.html",
-    "precache-manifest.2baef9e916f02d0a6d2e80c9e29c67a9.js": "/othello-board/precache-manifest.2baef9e916f02d0a6d2e80c9e29c67a9.js",
+    "precache-manifest.a687b2d02955ba2ca82e90da6fad1a98.js": "/othello-board/precache-manifest.a687b2d02955ba2ca82e90da6fad1a98.js",
     "service-worker.js": "/othello-board/service-worker.js",
-    "static/css/main.b6a75763.chunk.css.map": "/othello-board/static/css/main.b6a75763.chunk.css.map"
+    "static/css/main.fbdc1f9f.chunk.css.map": "/othello-board/static/css/main.fbdc1f9f.chunk.css.map"
   }
 }

@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e4e964dc87a722d3176f53a215be197a",
+    "revision": "4267505ec2cd592b26d6c1269a736537",
     "url": "/othello-board/index.html"
   },
   {
-    "revision": "2cd780a088c423a51b56",
-    "url": "/othello-board/static/css/main.f3b60108.chunk.css"
+    "revision": "b372adfaee6067465fce",
+    "url": "/othello-board/static/css/main.482bf889.chunk.css"
   },
   {
     "revision": "f816a8aa9ecf6775b5e7",
     "url": "/othello-board/static/js/2.ba10a6fb.chunk.js"
   },
   {
-    "revision": "2cd780a088c423a51b56",
+    "revision": "b372adfaee6067465fce",
     "url": "/othello-board/static/js/main.d22de4d3.chunk.js"
   },
   {
